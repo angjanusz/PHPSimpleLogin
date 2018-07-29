@@ -37,9 +37,8 @@
   }
   ?>
   <?php
-$servername = "localhost";
-$username = "angadmin";
-$password = "Karolek357!";
+  include "database.php";
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
