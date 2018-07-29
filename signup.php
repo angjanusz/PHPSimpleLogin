@@ -30,15 +30,11 @@
         $emailErr = "Invalid email format";
       }
       $sql_u = $conn->prepare('SELECT email FROM log_ins WHERE email=?');
-      if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
       $sql_u->bind_param('s',$email);
       $sql_u->execute();
       $result_u = $sql_u->get_result();
-      if (empty($result_u)) {
-      }
-      else {
+      echo "$result_u";
+      if (mysqli_num_rows($result_u) > 0) {
         $emailErr = "Email already registered!";
       }
     }
