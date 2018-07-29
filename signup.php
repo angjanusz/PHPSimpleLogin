@@ -36,9 +36,21 @@
       include "database.php";
       $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
+try {
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed:");
 }
+  $sql = "INSERT INTO logins (email, passwd) VALUES ($email, $passwd)"
+  $conn->exec($sql);
+      echo "New record created successfully";
+      }
+  catch(PDOException $e)
+      {
+      echo $sql . "<br>" . $e->getMessage();
+      }
+
+  $conn = null;
+
     }
   }
   function test_input($data) {
