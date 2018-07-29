@@ -36,8 +36,6 @@
     return $data;
     echo $data;
   }
-  ?>
-  <?php
   include "database.php";
 // Create connection
 $conn = new mysqli($servername, $username, $password);
