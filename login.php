@@ -73,10 +73,10 @@ mysqli_close($conn);
   </form>
   <?php
   if ($logged = 1) {
-    print "<div class=\"alert alert-success alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Logged In!</strong>$login_Result</div>"
+    print "<div class=\"alert alert-success alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Logged In!</strong>$login_Result</div>";
   }
   else if ($logged = -1) {
-    print "<div class=\"alert alert-danger alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Failed to Log In!</strong>$login_Result</div>"
+    print "<div class=\"alert alert-danger alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Failed to Log In!</strong>$login_Result</div>";
   }
   }
   ?>
