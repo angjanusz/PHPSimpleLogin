@@ -36,7 +36,7 @@
     if (empty($$passwdErr) && empty($emailErr)){
 
   $sql_l = $conn->prepare('SELECT * FROM log_ins WHERE email = ? AND passwd = ?');
-  $sql_l->bind_param('ss', $email, password_hash($passwd, PASSWORD_BCRYPT));
+  $sql_l->bind_param('ss', $email, $passwd);
   $sql_l->execute();
   $result_l = $sql_l->get_result();
   if (mysqli_num_rows($result_l) > 0) {
@@ -45,6 +45,7 @@
   else{
     print "<div class=\"alert alert-danger alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Failed to Log In!</strong>Incorrect username or password. Please try again!</div>";
   }
+}
 }
   function test_input($data) {
     $data = trim($data);
