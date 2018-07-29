@@ -45,6 +45,7 @@
   else{
     print "<div class=\"alert alert-danger alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Failed to Log In!</strong>Incorrect username or password. Please try again!</div>";
   }
+}
   function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
