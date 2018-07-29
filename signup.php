@@ -26,7 +26,6 @@
     $passwd = test_input($_POST["passwd"]);
   }
 
-  }
 
   function test_input($data) {
     $data = trim($data);
