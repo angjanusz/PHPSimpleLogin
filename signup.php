@@ -34,9 +34,10 @@
     }
     if (empty($$passwdErr) && empty($emailErr)){
       include "database.php";
+      try {
       $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
-try {
+
 if ($conn->connect_error) {
     die("Connection failed:");
 }
