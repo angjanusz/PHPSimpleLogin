@@ -15,6 +15,14 @@
   $email = $email_err = $passwd = $passwd_err = "";
   echo $_POST["email"];
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include "database.php";
+  // Create connection
+  $conn = new mysqli($servername, $username, $password);
+  // Check connection
+  if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+  }
+  echo "Connected successfully";
     if (empty($_POST["email"])) {
     $email_err = "Email is required";
   } else {
@@ -34,16 +42,8 @@
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-    echo $data;
   }
-  include "database.php";
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-// Check connection
-if ($conn->connect_error) {
-   die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
+
 ?>
 <div class="container">
  <h1>Hello! Please enter your email address, and a password!</h1>
