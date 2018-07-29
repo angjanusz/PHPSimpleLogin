@@ -10,17 +10,42 @@
  <style>.row-eq-height {  display: -webkit-box;  display: -webkit-flex;  display: -ms-flexbox;  display: flex;}</style>
 </head>
 <body>
+  <?php
+  // define variables and set to empty values
+  $email = $passwd = "";
 
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["email"])){
+      $email_error="Email is required!"
+    }
+    else{
+      $email = test_input($_POST["email"]);
+    }
+    if (empty($_POST["passwd"])){
+      $passwd="Password is required!"
+    }
+    else{
+      $passwd = test_input($_POST["passwd"]);
+    }
+  }
+
+  function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+  ?>
 <div class="container">
  <h1>Hello! Please enter your email address, and a password!</h1>
- <form action="/action_page.php">
+ <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
  <div class="form-group">
    <label for="email">Email address:</label>
    <input type="email" class="form-control" id="email">
  </div>
  <div class="form-group">
-   <label for="pwd">Password:</label>
-   <input type="password" class="form-control" id="pwd">
+   <label for="passwd">Password:</label>
+   <input type="password" class="form-control" id="passwd">
  </div>
  <button type="submit" class="btn btn-default">Submit</button>
 </form>
