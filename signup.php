@@ -34,7 +34,6 @@
     }
     if (empty($$passwdErr) && empty($emailErr)){
       include "database.php";
-      try {
       $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 
@@ -42,15 +41,14 @@ if ($conn->connect_error) {
     die("Connection failed:");
 }
   $sql = "INSERT INTO logins (email, passwd) VALUES ($email, $passwd)"
-  $conn->exec($sql);
-      echo "New record created successfully";
-      }
-  catch(PDOException $e)
-      {
-      echo $sql . "<br>" . $e->getMessage();
-      }
 
-  $conn = null;
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+mysqli_close($conn);
 
     }
   }
