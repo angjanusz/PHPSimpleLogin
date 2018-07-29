@@ -13,15 +13,7 @@
   <?php
   // define variables and set to empty values
   $email = $email_err = $passwd = $passwd_err = "";
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include "database.php";
-  // Create connection
-  $conn = new mysqli($servername, $username, $password);
-  // Check connection
-  if ($conn->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
-  }
-  echo "Connected successfully";
+
     if (empty($_POST["email"])) {
     $email_err = "Email is required";
   } else {
