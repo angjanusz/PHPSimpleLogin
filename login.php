@@ -78,7 +78,6 @@ mysqli_close($conn);
   else if ($logged = -1) {
     print "<div class=\"alert alert-danger alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Failed to Log In!</strong>$login_Result</div>";
   }
-  }
   ?>
   </div>
 </body>
