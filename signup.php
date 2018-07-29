@@ -46,7 +46,7 @@
     if (empty($$passwdErr) && empty($emailErr)){
 
   $sql_r = $conn->prepare('INSERT INTO log_ins (email, passwd) VALUES (?, ?)');
-  $sql_r->bind_param('ss', $email, password_hash($passwd, PASSWORD_ARGON2I);
+  $sql_r->bind_param('ss', $email, password_hash($passwd);
   $sql_r->execute();
 mysqli_close($conn);
 
