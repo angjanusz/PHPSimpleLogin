@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $passwd = test_input($_POST["passwd"]);
   }
-  )
+}
 
 
   function test_input($data) {
