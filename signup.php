@@ -33,7 +33,6 @@
       $sql_u->bind_param('s',$email);
       $sql_u->execute();
       $result_u = $sql_u->get_result();
-      echo "$result_u";
       if (mysqli_num_rows($result_u) > 0) {
         $emailErr = "Email already registered!";
       }
@@ -42,7 +41,7 @@
     if (empty($_POST["passwd"])) {
       $passwdErr = "";
     } else {
-      $passwd = test_input($_POST["passwd"]);
+      $passwd = password_hash(test_input($_POST["passwd"]), PASSWORD_ARGON2I);
     }
     if (empty($$passwdErr) && empty($emailErr)){
 
