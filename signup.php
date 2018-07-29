@@ -13,7 +13,6 @@
   <?php
   // define variables and set to empty values
   $email = $email_err = $passwd = $passwd_err = "";
-  echo $_POST["email"];
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include "database.php";
   // Create connection
