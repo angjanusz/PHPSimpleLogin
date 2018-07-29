@@ -30,6 +30,9 @@
         $emailErr = "Invalid email format";
       }
       $sql_u = $conn->prepare('SELECT email FROM logins WHERE email=?');
+      if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
       $sql_u->bind_param('s',$email);
       $sql_u->execute();
       $result_u = $sql_u->get_result();
