@@ -29,7 +29,7 @@
       if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $emailErr = "Invalid email format";
       }
-      $sql_u = $conn->prepare('SELECT email FROM logins WHERE email=?');
+      $sql_u = $conn->prepare('SELECT email FROM log_ins WHERE email=?');
       if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -50,7 +50,7 @@
     }
     if (empty($$passwdErr) && empty($emailErr)){
 
-  $sql_r = $conn->prepare('INSERT INTO logins (email, passwd) VALUES (?, ?)');
+  $sql_r = $conn->prepare('INSERT INTO log_ins (email, passwd) VALUES (?, ?)');
   $sql_r->bind_param('ss', $email, $passwd);
   $sql_r->execute();
 mysqli_close($conn);
