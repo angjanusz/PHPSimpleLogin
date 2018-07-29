@@ -38,7 +38,7 @@
 if ($conn->connect_error) {
     die("Connection failed:");
 }
-  $sql = "INSERT INTO logins (email, passwd) VALUES ('$email', '$passwd')"
+  $sql = "INSERT INTO logins (email, passwd) VALUES ('$email', '$passwd')";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
