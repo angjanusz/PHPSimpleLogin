@@ -39,17 +39,11 @@
   $sql_l->bind_param('ss', $email, password_hash($passwd, PASSWORD_BCRYPT));
   $sql_l->execute();
   $result_l = $sql_l->get_result();
-  if (mysqli_num_rows($result_u) > 0) {
-    $logged = 1;
-    $login_Result = "Successfuly logged in as $email.";
+  if (mysqli_num_rows($result_l) > 0) {
+    print "<div class=\"alert alert-success alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Logged In!</strong>Successfully logged in as $email!</div>";
   }
   else{
-    $logged = -1;
-    $login_Result="Incorrect username or password. Please try again!";
-  }
-mysqli_close($conn);
-
-    }
+    print "<div class=\"alert alert-danger alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Failed to Log In!</strong>Incorrect username or password. Please try again!</div>";
   }
   function test_input($data) {
     $data = trim($data);
@@ -71,14 +65,7 @@ mysqli_close($conn);
    </div>
    <button type="submit" class="btn btn-default">Submit</button>
   </form>
-  <?php
-  if ($logged = 1) {
-    print "<div class=\"alert alert-success alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Logged In!</strong>$login_Result</div>";
-  }
-  else if ($logged = -1) {
-    print "<div class=\"alert alert-danger alert-dismissible fade in\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>Failed to Log In!</strong>$login_Result</div>";
-  }
-  ?>
+
   </div>
 </body>
 </html>
