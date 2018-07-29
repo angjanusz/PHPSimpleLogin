@@ -41,12 +41,12 @@
     if (empty($_POST["passwd"])) {
       $passwdErr = "";
     } else {
-      $passwd = password_hash(test_input($_POST["passwd"]), PASSWORD_ARGON2I);
+      $passwd = test_input($_POST["passwd"]);
     }
     if (empty($$passwdErr) && empty($emailErr)){
 
   $sql_r = $conn->prepare('INSERT INTO log_ins (email, passwd) VALUES (?, ?)');
-  $sql_r->bind_param('ss', $email, $passwd);
+  $sql_r->bind_param('ss', $email, password_hash($passwd, PASSWORD_ARGON2I);
   $sql_r->execute();
 mysqli_close($conn);
 
