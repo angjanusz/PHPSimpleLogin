@@ -16,7 +16,11 @@
   $email = $passwd = "";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    include "database.php";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+    die("Connection failed:");
+    }
     if (empty($_POST["email"])) {
       $emailErr = "Email is required";
     } else {
@@ -24,6 +28,15 @@
       // check if e-mail address is well-formed
       if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $emailErr = "Invalid email format";
+      }
+      $sql_u = $conn->prepare('SELECT email FROM logins WHERE email=?');
+      $sql_u->bind_param('s',$email);
+      $sql_u->execute();
+      $result_u = $sql_u->get_result();
+      if (empty($result_u)) {
+      }
+      else {
+        $emailErr = "Email already registered!";
       }
     }
 
@@ -33,19 +46,10 @@
       $passwd = test_input($_POST["passwd"]);
     }
     if (empty($$passwdErr) && empty($emailErr)){
-      include "database.php";
-      $conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed:");
-}
-  $sql = "INSERT INTO logins (email, passwd) VALUES ('$email', '$passwd')";
 
-if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
+  $sql_r = $conn->prepare('INSERT INTO logins (email, passwd) VALUES (?, ?)');
+  $sql_r->bind_param('ss', $email, $passwd);
+  $sql_r->execute();
 mysqli_close($conn);
 
     }
