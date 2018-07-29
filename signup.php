@@ -13,7 +13,7 @@
   <?php
   // define variables and set to empty values
   $email = $email_err = $passwd = $passwd_err = "";
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
     $email_err = "Email is required";
   } else {
@@ -25,6 +25,7 @@
   } else {
     $passwd = test_input($_POST["passwd"]);
   }
+  )
 
 
   function test_input($data) {
